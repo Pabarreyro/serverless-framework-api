@@ -2,6 +2,7 @@ import handler from './lib/handler';
 import dynamoDb from './lib/dynamoDb';
 
 export const singleNote = handler(async (event, context) => {
+  let result;
   const params = {
     TableName: process.env.tableName,
     // 'Key' defines the partition key and sort key of the note being retrieved
@@ -14,7 +15,7 @@ export const singleNote = handler(async (event, context) => {
   };
 
   try {
-    const result = await dynamoDb.get(params);
+    result = await dynamoDb.get(params);
   } catch (e) {
     throw e;
   }
